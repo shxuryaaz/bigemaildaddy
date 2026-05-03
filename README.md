@@ -1,3 +1,7 @@
+# Big Email Daddy
+
+A Next.js app for drafting and sending personalized outreach.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

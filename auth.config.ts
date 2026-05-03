@@ -1,5 +1,6 @@
 import type { NextAuthConfig } from "next-auth";
 import Google from "next-auth/providers/google";
+import { authJwtDecode, authJwtEncode } from "@/lib/session-jwt";
 
 const googleScopes = [
   "openid",
@@ -29,6 +30,11 @@ export default {
   session: {
     strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60,
+  },
+  /** HS256 JWS instead of default JWE so middleware does not bundle `jose` JWE deflate (unsupported Edge APIs). */
+  jwt: {
+    encode: authJwtEncode,
+    decode: authJwtDecode,
   },
   callbacks: {
     async jwt({ token, account, user }) {
