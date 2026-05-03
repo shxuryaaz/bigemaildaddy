@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { getAuthJsSessionToken } from "@/lib/edge-auth-cookie";
-import { authJwtDecode } from "@/lib/session-jwt";
+import { authJwtDecode } from "@/lib/session-jwt-decode";
 
 function sessionCookieName(secure: boolean) {
   const prefix = secure ? "__Secure-" : "";
