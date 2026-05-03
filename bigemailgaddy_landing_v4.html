@@ -1,0 +1,450 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+.page{
+  background:#F2EFE8;
+  font-family:'IBM Plex Sans',sans-serif;
+  border-radius:var(--border-radius-lg);
+  overflow:hidden;
+  border:0.5px solid #C8C4BA;
+  min-height:660px;
+  position:relative;
+}
+
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 28px;
+  border-bottom:1.5px solid #1C1B17;
+}
+
+.logo-mark{
+  display:flex;
+  align-items:baseline;
+  gap:0px;
+}
+
+.logo-big{
+  font-family:'Playfair Display',serif;
+  font-size:20px;
+  font-weight:900;
+  color:#1C1B17;
+  letter-spacing:-0.5px;
+}
+
+.logo-sup{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;
+  color:#8A8478;
+  font-weight:400;
+  margin-left:6px;
+  letter-spacing:0.5px;
+  text-transform:uppercase;
+  align-self:center;
+}
+
+.nav-links{
+  display:flex;
+  gap:0;
+  list-style:none;
+}
+
+.nav-links li{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  color:#5A5850;
+  cursor:pointer;
+  padding:6px 14px;
+  border-left:0.5px solid #C8C4BA;
+  letter-spacing:0.3px;
+  text-transform:uppercase;
+}
+
+.nav-links li:first-child{border-left:none;}
+
+.nav-cta{
+  background:#1C1B17;
+  color:#F2EFE8;
+  border:none;
+  padding:8px 16px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  letter-spacing:0.5px;
+  text-transform:uppercase;
+  cursor:pointer;
+  border-radius:3px;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1fr 420px;
+  min-height:420px;
+  border-bottom:1.5px solid #1C1B17;
+}
+
+.hero-left{
+  padding:36px 32px 32px;
+  border-right:1.5px solid #1C1B17;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.headline{
+  font-family:'Playfair Display',serif;
+  font-weight:900;
+  font-size:54px;
+  color:#1C1B17;
+  line-height:0.95;
+  letter-spacing:-2px;
+  margin-bottom:20px;
+}
+
+.headline .italic{
+  font-style:italic;
+  color:#1C1B17;
+}
+
+.headline .stroke{
+  -webkit-text-stroke:1.5px #1C1B17;
+  color:transparent;
+}
+
+.tagline{
+  font-family:'Playfair Display',serif;
+  font-style:italic;
+  font-size:15px;
+  color:#8A8478;
+  margin-bottom:20px;
+  letter-spacing:-0.2px;
+}
+
+.deck{
+  font-size:13px;
+  color:#5A5850;
+  line-height:1.65;
+  font-weight:300;
+  max-width:340px;
+  margin-bottom:28px;
+}
+
+.deck strong{
+  color:#1C1B17;
+  font-weight:500;
+}
+
+.cta-block{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.btn-main{
+  background:#1C1B17;
+  color:#F2EFE8;
+  border:none;
+  padding:13px 24px;
+  font-family:'IBM Plex Sans',sans-serif;
+  font-size:13px;
+  font-weight:500;
+  cursor:pointer;
+  border-radius:3px;
+  letter-spacing:-0.1px;
+}
+
+.btn-ghost{
+  background:transparent;
+  color:#1C1B17;
+  border:1px solid #1C1B17;
+  padding:12px 20px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+  cursor:pointer;
+  border-radius:3px;
+}
+
+.hero-right{
+  display:flex;
+  flex-direction:column;
+}
+
+.email-frame{
+  flex:1;
+  padding:24px 24px 20px;
+  border-bottom:1px solid #DDD9D0;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.frame-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;
+  color:#8A8478;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.email-paper{
+  background:#FFFFFF;
+  border:0.5px solid #DDD9D0;
+  border-radius:4px;
+  overflow:hidden;
+  flex:1;
+}
+
+.ep-head{
+  background:#F8F6F2;
+  border-bottom:0.5px solid #DDD9D0;
+  padding:10px 14px;
+}
+
+.ep-row{
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+  margin-bottom:3px;
+}
+
+.ep-row:last-child{margin-bottom:0;}
+
+.ep-key{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;
+  color:#A09888;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+  width:30px;
+  flex-shrink:0;
+}
+
+.ep-val{
+  font-size:11px;
+  color:#1C1B17;
+  font-weight:500;
+}
+
+.ep-body{
+  padding:12px 14px;
+  font-size:11.5px;
+  color:#3A3632;
+  line-height:1.75;
+}
+
+.ep-hl{
+  background:#FFF0D4;
+  padding:0 3px;
+  border-radius:2px;
+  color:#7A4A10;
+}
+
+.signal-panel{
+  padding:16px 24px;
+  background:#1C1B17;
+}
+
+.signal-title{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;
+  color:#6B6860;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+
+.signal-item{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  padding:5px 0;
+  border-bottom:0.5px solid #2C2B27;
+}
+
+.signal-item:last-child{border-bottom:none;}
+
+.sig-num{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;
+  color:#6B6860;
+  padding-top:2px;
+  flex-shrink:0;
+}
+
+.sig-text{
+  font-size:11px;
+  color:#C8C4BA;
+  line-height:1.5;
+}
+
+.sig-text strong{color:#F2EFE8;font-weight:500;}
+
+.bottom-bar{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr 1fr;
+  border-top:1.5px solid #1C1B17;
+}
+
+.stat-cell{
+  padding:16px 24px;
+  border-right:1px solid #C8C4BA;
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+}
+
+.stat-cell:last-child{border-right:none;}
+
+.s-num{
+  font-family:'Playfair Display',serif;
+  font-size:26px;
+  font-weight:700;
+  color:#1C1B17;
+  letter-spacing:-1px;
+  line-height:1;
+}
+
+.s-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;
+  color:#8A8478;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+  line-height:1.4;
+}
+
+.quote-cell{
+  padding:16px 24px;
+  display:flex;
+  align-items:flex-start;
+  gap:8px;
+}
+
+.q-mark{
+  font-family:'Playfair Display',serif;
+  font-size:32px;
+  color:#C8C4BA;
+  line-height:1;
+  margin-top:-4px;
+  flex-shrink:0;
+}
+
+.q-text{
+  font-size:11px;
+  color:#5A5850;
+  line-height:1.55;
+  font-style:italic;
+}
+
+.q-author{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;
+  color:#8A8478;
+  text-transform:uppercase;
+  letter-spacing:0.3px;
+  margin-top:4px;
+}
+</style>
+
+<div class="page">
+
+  <nav class="nav">
+    <div class="logo-mark">
+      <span class="logo-big">BigEmailDaddy</span>
+      <span class="logo-sup">Beta</span>
+    </div>
+    <ul class="nav-links">
+      <li>How it works</li>
+      <li>Examples</li>
+      <li>Pricing</li>
+    </ul>
+    <button class="nav-cta">Start free →</button>
+  </nav>
+
+  <div class="hero-grid">
+    <div class="hero-left">
+      <div>
+        <h1 class="headline">
+          Your cold<br>
+          emails are<br>
+          <span class="stroke">trash.</span><br>
+          <span class="italic">Ours aren't.</span>
+        </h1>
+        <div class="tagline">Let Big Email Daddy handle it.</div>
+        <p class="deck">
+          Upload your resume and GitHub. Pick a professor or recruiter. We research them, find the <strong>exact overlap</strong> between their world and yours, and write one email that sounds like you actually thought about it.
+        </p>
+      </div>
+      <div class="cta-block">
+        <button class="btn-main">Write my first email</button>
+        <button class="btn-ghost">See example →</button>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="email-frame">
+        <div class="frame-label">Live email preview</div>
+        <div class="email-paper">
+          <div class="ep-head">
+            <div class="ep-row">
+              <span class="ep-key">To</span>
+              <span class="ep-val">Prof. Rajesh Kumar — IIT Delhi, NLP Lab</span>
+            </div>
+            <div class="ep-row">
+              <span class="ep-key">Sub</span>
+              <span class="ep-val">Your section 4 gap + my capstone</span>
+            </div>
+          </div>
+          <div class="ep-body">
+            Prof. Kumar — your <span class="ep-hl">2024 paper on cross-lingual transfer</span> flagged code-switching as an open problem in section 4. That's the exact direction I've been building for my final year project — a Hinglish corpus pipeline with sub-word alignment.<br><br>
+            Worth 15 minutes? Happy to send the repo first.
+          </div>
+        </div>
+      </div>
+
+      <div class="signal-panel">
+        <div class="signal-title">Why this lands</div>
+        <div class="signal-item">
+          <span class="sig-num">01</span>
+          <span class="sig-text"><strong>Paper-level specificity</strong> — not "your research", section 4 of a named 2024 publication</span>
+        </div>
+        <div class="signal-item">
+          <span class="sig-num">02</span>
+          <span class="sig-text"><strong>Proof not claims</strong> — GitHub repo as evidence, not "I'm passionate about NLP"</span>
+        </div>
+        <div class="signal-item">
+          <span class="sig-num">03</span>
+          <span class="sig-text"><strong>Zero-risk ask</strong> — repo first, then 15 min. They lose nothing saying yes</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <div class="stat-cell">
+      <span class="s-num">3.4×</span>
+      <span class="s-label">Higher reply rate vs templates</span>
+    </div>
+    <div class="stat-cell">
+      <span class="s-num">90s</span>
+      <span class="s-label">To your first email draft</span>
+    </div>
+    <div class="stat-cell">
+      <span class="s-num">0</span>
+      <span class="s-label">Generic phrases. Ever.</span>
+    </div>
+    <div class="stat-cell quote-cell">
+      <span class="q-mark">"</span>
+      <div>
+        <div class="q-text">First cold email I sent that didn't make me want to delete my own account.</div>
+        <div class="q-author">— Final yr, BITS Pilani CSE</div>
+      </div>
+    </div>
+  </div>
+
+</div>

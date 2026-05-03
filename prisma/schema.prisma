@@ -1,0 +1,190 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// --- NextAuth (Auth.js) + Prisma adapter ---
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model User {
+  id              String    @id @default(cuid())
+  name            String?
+  email           String?   @unique
+  emailVerified   DateTime? @map("email_verified")
+  image           String?
+  accounts        Account[]
+  sessions        Session[]
+  profile         Profile?
+  emails          Email[]
+  feedbackSignals FeedbackSignal[]
+
+  @@map("users")
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+// --- App domain ---
+
+enum TargetType {
+  PROFESSOR
+  RECRUITER
+}
+
+enum EmailAngle {
+  ALIGNMENT
+  CONTRIBUTION
+  CURIOSITY
+}
+
+enum EmailTone {
+  FORMAL
+  CONFIDENT
+  CURIOUS
+}
+
+enum EmailStatus {
+  DRAFT
+  SENT
+  REPLIED
+  BOUNCED
+}
+
+enum FollowupType {
+  DAY3
+  DAY7
+}
+
+enum FollowupStatus {
+  QUEUED
+  SENT
+  CANCELLED
+}
+
+model Profile {
+  id               String   @id @default(cuid())
+  userId           String   @unique @map("user_id")
+  githubUsername   String?
+  resumeFileUrl    String?
+  linkedinFileUrl  String?
+  identityModel    Json?
+  credibilityScore Int      @default(0)
+  domainCluster    String?
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("profiles")
+}
+
+model Target {
+  id                String      @id @default(cuid())
+  type              TargetType
+  name              String
+  email             String?
+  organization      String
+  domain            String
+  rawData           Json?
+  tasteModel        Json?
+  tasteModelVersion Int         @default(1)
+  lastResearchedAt  DateTime?
+  createdAt         DateTime    @default(now()) @map("created_at")
+
+  emails Email[]
+
+  @@unique([name, organization])
+  @@map("targets")
+}
+
+model Email {
+  id                 String      @id @default(cuid())
+  userId             String      @map("user_id")
+  targetId           String      @map("target_id")
+  angle              EmailAngle
+  tone               EmailTone
+  subject            String
+  body               String      @db.Text
+  status             EmailStatus @default(DRAFT)
+  sentAt             DateTime?   @map("sent_at")
+  repliedAt          DateTime?   @map("replied_at")
+  generationMetadata Json?
+  createdAt          DateTime    @default(now()) @map("created_at")
+
+  user            User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  target          Target           @relation(fields: [targetId], references: [id], onDelete: Restrict)
+  followups       Followup[]
+  feedbackSignals FeedbackSignal[]
+
+  @@map("emails")
+}
+
+model Followup {
+  id     String         @id @default(cuid())
+  emailId String        @map("email_id")
+  sendAt DateTime      @map("send_at")
+  type   FollowupType
+  status FollowupStatus @default(QUEUED)
+  body   String?       @db.Text
+  sentAt DateTime?     @map("sent_at")
+
+  email Email @relation(fields: [emailId], references: [id], onDelete: Cascade)
+
+  @@map("followups")
+}
+
+model FeedbackSignal {
+  id           String     @id @default(cuid())
+  userId       String     @map("user_id")
+  emailId      String     @map("email_id")
+  angle        EmailAngle
+  domain       String
+  gotReply     Boolean    @map("got_reply")
+  replyQuality Int?       @map("reply_quality")
+  createdAt    DateTime   @default(now()) @map("created_at")
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  email Email @relation(fields: [emailId], references: [id], onDelete: Cascade)
+
+  @@map("feedback_signals")
+}

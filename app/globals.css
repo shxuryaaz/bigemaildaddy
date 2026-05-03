@@ -1,0 +1,438 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --muted-foreground: #737373;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --muted-foreground: #a3a3a3;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* --- BigEmailDaddy marketing (scoped; tokens + layout from landing v4) --- */
+
+.marketing-root {
+  --color-page-bg: #f2efe8;
+  --color-ink: #1c1b17;
+  --color-muted: #8a8478;
+  --color-muted-strong: #5a5850;
+  --color-border: #c8c4ba;
+  --color-border-light: #ddd9d0;
+  --color-ep-head-bg: #f8f6f2;
+  --color-paper: #ffffff;
+  --color-ep-body: #3a3632;
+  --color-ep-key: #a09888;
+  --color-hl-bg: #fff0d4;
+  --color-hl-fg: #7a4a10;
+  --color-signal-bg: #1c1b17;
+  --color-signal-border: #2c2b27;
+  --color-signal-label: #6b6860;
+  --color-signal-text: #c8c4ba;
+  --color-signal-strong: #f2efe8;
+  --color-nav-link: #5a5850;
+  --color-stat-label: #8a8478;
+  --color-quote-mark: #c8c4ba;
+  --color-quote-text: #5a5850;
+  --border-radius-lg: 12px;
+
+  min-height: 100dvh;
+  background: var(--color-page-bg);
+}
+
+.marketing-root *,
+.marketing-root *::before,
+.marketing-root *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.marketing-root .nav-cta,
+.marketing-root .btn-main {
+  text-decoration: none;
+}
+
+.marketing-root .page {
+  background: var(--color-page-bg);
+  font-family: var(--font-sans), sans-serif;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  border: 0.5px solid var(--color-border);
+  min-height: 660px;
+  position: relative;
+}
+
+.marketing-root .nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px;
+  border-bottom: 1.5px solid var(--color-ink);
+}
+
+.marketing-root .logo-mark {
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+}
+
+.marketing-root .logo-big {
+  font-family: var(--font-serif), serif;
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--color-ink);
+  letter-spacing: -0.5px;
+}
+
+.marketing-root .logo-sup {
+  font-family: var(--font-mono), monospace;
+  font-size: 9px;
+  color: var(--color-muted);
+  font-weight: 400;
+  margin-left: 6px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  align-self: center;
+}
+
+.marketing-root .nav-links {
+  display: flex;
+  gap: 0;
+  list-style: none;
+}
+
+.marketing-root .nav-links li {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  color: var(--color-nav-link);
+  cursor: pointer;
+  padding: 6px 14px;
+  border-left: 0.5px solid var(--color-border);
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.marketing-root .nav-links li:first-child {
+  border-left: none;
+}
+
+.marketing-root .nav form {
+  display: contents;
+}
+
+.marketing-root .nav-cta {
+  background: var(--color-ink);
+  color: var(--color-page-bg);
+  border: none;
+  padding: 8px 16px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.marketing-root .hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  min-height: 420px;
+  border-bottom: 1.5px solid var(--color-ink);
+}
+
+.marketing-root .hero-left {
+  padding: 36px 32px 32px;
+  border-right: 1.5px solid var(--color-ink);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.marketing-root .headline {
+  font-family: var(--font-serif), serif;
+  font-weight: 900;
+  font-size: 54px;
+  color: var(--color-ink);
+  line-height: 0.95;
+  letter-spacing: -2px;
+  margin-bottom: 20px;
+}
+
+.marketing-root .headline .italic {
+  font-style: italic;
+  color: var(--color-ink);
+}
+
+.marketing-root .headline .stroke {
+  -webkit-text-stroke: 1.5px var(--color-ink);
+  color: transparent;
+}
+
+.marketing-root .tagline {
+  font-family: var(--font-serif), serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--color-muted);
+  margin-bottom: 20px;
+  letter-spacing: -0.2px;
+}
+
+.marketing-root .deck {
+  font-size: 13px;
+  color: var(--color-muted-strong);
+  line-height: 1.65;
+  font-weight: 300;
+  max-width: 340px;
+  margin-bottom: 28px;
+}
+
+.marketing-root .deck strong {
+  color: var(--color-ink);
+  font-weight: 500;
+}
+
+.marketing-root .cta-block {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.marketing-root .cta-block form {
+  display: contents;
+}
+
+.marketing-root .btn-main {
+  background: var(--color-ink);
+  color: var(--color-page-bg);
+  border: none;
+  padding: 13px 24px;
+  font-family: var(--font-sans), sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 3px;
+  letter-spacing: -0.1px;
+}
+
+.marketing-root .btn-ghost {
+  background: transparent;
+  color: var(--color-ink);
+  border: 1px solid var(--color-ink);
+  padding: 12px 20px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.marketing-root .hero-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.marketing-root .email-frame {
+  flex: 1;
+  padding: 24px 24px 20px;
+  border-bottom: 1px solid var(--color-border-light);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.marketing-root .frame-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 9px;
+  color: var(--color-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.marketing-root .email-paper {
+  background: var(--color-paper);
+  border: 0.5px solid var(--color-border-light);
+  border-radius: 4px;
+  overflow: hidden;
+  flex: 1;
+}
+
+.marketing-root .ep-head {
+  background: var(--color-ep-head-bg);
+  border-bottom: 0.5px solid var(--color-border-light);
+  padding: 10px 14px;
+}
+
+.marketing-root .ep-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 3px;
+}
+
+.marketing-root .ep-row:last-child {
+  margin-bottom: 0;
+}
+
+.marketing-root .ep-key {
+  font-family: var(--font-mono), monospace;
+  font-size: 9px;
+  color: var(--color-ep-key);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  width: 30px;
+  flex-shrink: 0;
+}
+
+.marketing-root .ep-val {
+  font-size: 11px;
+  color: var(--color-ink);
+  font-weight: 500;
+}
+
+.marketing-root .ep-body {
+  padding: 12px 14px;
+  font-size: 11.5px;
+  color: var(--color-ep-body);
+  line-height: 1.75;
+}
+
+.marketing-root .ep-hl {
+  background: var(--color-hl-bg);
+  padding: 0 3px;
+  border-radius: 2px;
+  color: var(--color-hl-fg);
+}
+
+.marketing-root .signal-panel {
+  padding: 16px 24px;
+  background: var(--color-signal-bg);
+}
+
+.marketing-root .signal-title {
+  font-family: var(--font-mono), monospace;
+  font-size: 9px;
+  color: var(--color-signal-label);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.marketing-root .signal-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 5px 0;
+  border-bottom: 0.5px solid var(--color-signal-border);
+}
+
+.marketing-root .signal-item:last-child {
+  border-bottom: none;
+}
+
+.marketing-root .sig-num {
+  font-family: var(--font-mono), monospace;
+  font-size: 9px;
+  color: var(--color-signal-label);
+  padding-top: 2px;
+  flex-shrink: 0;
+}
+
+.marketing-root .sig-text {
+  font-size: 11px;
+  color: var(--color-signal-text);
+  line-height: 1.5;
+}
+
+.marketing-root .sig-text strong {
+  color: var(--color-signal-strong);
+  font-weight: 500;
+}
+
+.marketing-root .bottom-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  border-top: 1.5px solid var(--color-ink);
+}
+
+.marketing-root .stat-cell {
+  padding: 16px 24px;
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.marketing-root .stat-cell:last-child {
+  border-right: none;
+}
+
+.marketing-root .s-num {
+  font-family: var(--font-serif), serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-ink);
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.marketing-root .s-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 9px;
+  color: var(--color-stat-label);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+
+.marketing-root .quote-cell {
+  padding: 16px 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.marketing-root .q-mark {
+  font-family: var(--font-serif), serif;
+  font-size: 32px;
+  color: var(--color-quote-mark);
+  line-height: 1;
+  margin-top: -4px;
+  flex-shrink: 0;
+}
+
+.marketing-root .q-text {
+  font-size: 11px;
+  color: var(--color-quote-text);
+  line-height: 1.55;
+  font-style: italic;
+}
+
+.marketing-root .q-author {
+  font-family: var(--font-mono), monospace;
+  font-size: 9px;
+  color: var(--color-stat-label);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-top: 4px;
+}
