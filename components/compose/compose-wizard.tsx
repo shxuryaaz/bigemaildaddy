@@ -226,7 +226,7 @@ export default function ComposeWizard() {
         else p.set(k, v);
       }
       const url = `/compose?${p.toString()}`;
-      replace ? router.replace(url) : router.push(url);
+      if (replace) router.replace(url); else router.push(url);
     },
     [router, searchParams],
   );
