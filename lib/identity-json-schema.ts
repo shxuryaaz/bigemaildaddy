@@ -61,8 +61,9 @@ export const IDENTITY_MODEL_JSON_SCHEMA = {
             type: "array",
             items: { type: "string" },
           },
+          url: { type: ["string", "null"] },
         },
-        required: ["name", "description", "domain", "depth", "tech"],
+        required: ["name", "description", "domain", "depth", "tech", "url"],
       },
     },
     experience: {

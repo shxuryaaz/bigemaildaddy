@@ -1,24 +1,23 @@
 import { put } from "@vercel/blob";
 import { NextResponse } from "next/server";
-import { PDFParse } from "pdf-parse";
 import {
   requireUser,
   UnauthorizedError,
 } from "@/lib/auth-helpers";
 import { prisma } from "@/lib/db";
-import { IDENTITY_MODEL_JSON_SCHEMA } from "@/lib/identity-json-schema";
-import { openai } from "@/lib/openai";
 import {
-  formatIdentityBuildUserPrompt,
-  IDENTITY_BUILD_SYSTEM,
-} from "@/lib/prompts";
+  buildGithubData,
+  computeCredibilityScore,
+  computeDomainCluster,
+} from "@/lib/github";
+import { completeIdentityModel } from "@/lib/identity-openai";
+import { extractTextFromPdfBuffer } from "@/lib/pdf-text";
 import type { IdentityModel } from "@/types";
 
 export const runtime = "nodejs";
 export const maxDuration = 120;
 
 const MAX_BYTES = 5 * 1024 * 1024;
-const MAX_RESUME_CHARS = 100_000;
 
 function isPdf(file: File): boolean {
   const name = file.name.toLowerCase();
@@ -26,16 +25,6 @@ function isPdf(file: File): boolean {
     file.type === "application/pdf" ||
     name.endsWith(".pdf")
   );
-}
-
-async function pdfBufferToText(buffer: Buffer): Promise<string> {
-  const parser = new PDFParse({ data: new Uint8Array(buffer) });
-  try {
-    const result = await parser.getText();
-    return (result.text ?? "").trim();
-  } finally {
-    await parser.destroy();
-  }
 }
 
 export async function POST(request: Request) {
@@ -109,7 +98,7 @@ export async function POST(request: Request) {
 
   let resumeText: string;
   try {
-    resumeText = await pdfBufferToText(buffer);
+    resumeText = await extractTextFromPdfBuffer(buffer);
   } catch (e) {
     console.error("[profile/build] pdf parse failed", e);
     return NextResponse.json(
@@ -125,41 +114,27 @@ export async function POST(request: Request) {
     );
   }
 
-  const githubField = form.get("githubData");
-  const githubData =
-    typeof githubField === "string" && githubField.trim()
-      ? githubField.trim()
-      : "null";
+  const ghForm = form.get("githubUsername");
+  const githubUsername =
+    typeof ghForm === "string" && ghForm.trim()
+      ? ghForm.trim()
+      : user.profile?.githubUsername?.trim() ?? "";
 
-  const clipped =
-    resumeText.length > MAX_RESUME_CHARS
-      ? `${resumeText.slice(0, MAX_RESUME_CHARS)}\n\n[truncated for model context]`
-      : resumeText;
+  let githubDataJson = "null";
+  let githubAgg = null as Awaited<ReturnType<typeof buildGithubData>> | null;
+  if (githubUsername) {
+    try {
+      githubAgg = await buildGithubData(githubUsername);
+      githubDataJson = JSON.stringify(githubAgg);
+    } catch (e) {
+      console.error("[profile/build] github aggregate failed", e);
+      githubDataJson = "null";
+    }
+  }
 
-  const userMessage = formatIdentityBuildUserPrompt(clipped, githubData);
-
-  let raw: string | null = null;
+  let identity: IdentityModel;
   try {
-    const completion = await openai.chat.completions.create({
-      model: "gpt-4.1",
-      temperature: 0.3,
-      max_tokens: 4000,
-      messages: [
-        { role: "system", content: IDENTITY_BUILD_SYSTEM },
-        { role: "user", content: userMessage },
-      ],
-      response_format: {
-        type: "json_schema",
-        json_schema: {
-          name: "IdentityModel",
-          strict: true,
-          schema: {
-            ...IDENTITY_MODEL_JSON_SCHEMA,
-          },
-        },
-      },
-    });
-    raw = completion.choices[0]?.message?.content ?? null;
+    identity = await completeIdentityModel(resumeText, githubDataJson);
   } catch (e) {
     console.error("[profile/build] openai failed", e);
     return NextResponse.json(
@@ -168,31 +143,19 @@ export async function POST(request: Request) {
     );
   }
 
-  if (!raw) {
-    return NextResponse.json(
-      { error: "Empty model response" },
-      { status: 502 },
-    );
-  }
-
-  let identity: IdentityModel;
-  try {
-    identity = JSON.parse(raw) as IdentityModel;
-  } catch {
-    return NextResponse.json(
-      { error: "Model returned invalid JSON" },
-      { status: 502 },
-    );
-  }
-
-  const domainCluster =
-    identity.domains?.length ? identity.domains.join(", ") : null;
+  const credibilityScore = githubAgg
+    ? computeCredibilityScore(githubAgg)
+    : 0;
+  const domainCluster = githubAgg
+    ? computeDomainCluster(githubAgg)
+    : "generalist";
 
   await prisma.profile.update({
     where: { userId: user.id },
     data: {
       resumeFileUrl,
       identityModel: identity as object,
+      credibilityScore,
       domainCluster,
     },
   });

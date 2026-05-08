@@ -120,10 +120,16 @@ export default function OnboardingWizard() {
         credentials: "include",
         body: JSON.stringify({ githubUsername: u }),
       });
-      const data = (await res.json().catch(() => null)) as { error?: string } | null;
+      const data = (await res.json().catch(() => null)) as {
+        error?: string;
+        identity?: IdentityModel;
+      } | null;
       if (!res.ok) {
         setError(data?.error ?? "Could not save GitHub username.");
         return;
+      }
+      if (data?.identity) {
+        setIdentity(data.identity);
       }
       setStep(3);
     } catch {

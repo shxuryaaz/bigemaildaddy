@@ -3,7 +3,18 @@ import {
   requireUser,
   UnauthorizedError,
 } from "@/lib/auth-helpers";
+import {
+  buildGithubData,
+  computeCredibilityScore,
+  computeDomainCluster,
+} from "@/lib/github";
 import { prisma } from "@/lib/db";
+import { completeIdentityModel } from "@/lib/identity-openai";
+import { extractTextFromPdfBuffer } from "@/lib/pdf-text";
+import type { IdentityModel } from "@/types";
+
+export const runtime = "nodejs";
+export const maxDuration = 120;
 
 const GITHUB_USER_RE = /^[a-zA-Z0-9](?:[a-zA-Z0-9]|-(?=[a-zA-Z0-9])){0,38}$/;
 
@@ -52,5 +63,49 @@ export async function POST(request: Request) {
     data: { githubUsername: username },
   });
 
-  return NextResponse.json({ ok: true, githubUsername: username });
+  let identityUpdated = false;
+  let identity: IdentityModel | undefined;
+  if (process.env.OPENAI_API_KEY) {
+    try {
+      const full = await prisma.user.findUnique({
+        where: { id: user.id },
+        include: { profile: true },
+      });
+      const url = full?.profile?.resumeFileUrl;
+      if (url) {
+        const pdfRes = await fetch(url);
+        if (pdfRes.ok) {
+          const buf = Buffer.from(await pdfRes.arrayBuffer());
+          const resumeText = await extractTextFromPdfBuffer(buf);
+          if (resumeText) {
+            const gh = await buildGithubData(username);
+            identity = await completeIdentityModel(
+              resumeText,
+              JSON.stringify(gh),
+            );
+            const credibilityScore = computeCredibilityScore(gh);
+            const domainCluster = computeDomainCluster(gh);
+            await prisma.profile.update({
+              where: { userId: user.id },
+              data: {
+                identityModel: identity as object,
+                credibilityScore,
+                domainCluster,
+              },
+            });
+            identityUpdated = true;
+          }
+        }
+      }
+    } catch (e) {
+      console.error("[profile/github] identity rebuild failed", e);
+    }
+  }
+
+  return NextResponse.json({
+    ok: true,
+    githubUsername: username,
+    identityUpdated,
+    ...(identity ? { identity } : {}),
+  });
 }

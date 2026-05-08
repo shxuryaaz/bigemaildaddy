@@ -47,11 +47,15 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   events: {
     async signIn({ user }) {
       if (!user?.id) return;
-      await prisma.profile.upsert({
-        where: { userId: user.id },
-        create: { userId: user.id },
-        update: {},
-      });
+      try {
+        await prisma.profile.upsert({
+          where: { userId: user.id },
+          create: { userId: user.id },
+          update: {},
+        });
+      } catch (err) {
+        console.error("[auth] profile upsert failed", err);
+      }
     },
   },
 });
