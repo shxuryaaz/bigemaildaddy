@@ -26,14 +26,14 @@ function Tip({
   position?: "top" | "bottom";
 }) {
   const [show, setShow] = useState(false);
-  const timer = useRef<ReturnType<typeof setTimeout>>(null);
+  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   const enter = () => {
     timer.current = setTimeout(() => setShow(true), 1200);
   };
   const leave = () => {
     if (timer.current) clearTimeout(timer.current);
-    timer.current = null;
+    timer.current = undefined;
     setShow(false);
   };
 
