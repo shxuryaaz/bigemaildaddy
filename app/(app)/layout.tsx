@@ -106,7 +106,7 @@ export default async function AppChromeLayout({
             className="flex items-center gap-2 font-[family-name:var(--font-serif)] text-base font-black tracking-tight text-[#1c1b17]"
           >
             <Image
-              src="/logo-nobg.png"
+              src="/mascot.png"
               alt=""
               width={32}
               height={32}
