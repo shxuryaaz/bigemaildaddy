@@ -1,3 +1,5 @@
+import { Reveal } from "@/components/marketing/Reveal";
+
 const STEPS = [
   [
     "01 — Setup",
@@ -20,23 +22,27 @@ export default function HowItWorks() {
   return (
     <section id="how-it-works" className="px-6 py-20">
       <div className="mx-auto max-w-5xl">
-        <p
-          className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6b7280]"
-          style={{ fontFamily: "var(--font-mono), monospace" }}
-        >
-          How it works
-        </p>
-        <h2
-          className="text-4xl font-black tracking-tight text-[#111010]"
-          style={{ fontFamily: "var(--font-serif), serif" }}
-        >
-          Three steps. One email that lands.
-        </h2>
+        <Reveal from="up">
+          <p
+            className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6b7280]"
+            style={{ fontFamily: "var(--font-mono), monospace" }}
+          >
+            How it works
+          </p>
+          <h2
+            className="text-4xl font-black tracking-tight text-[#111010]"
+            style={{ fontFamily: "var(--font-serif), serif" }}
+          >
+            Three steps. One email that lands.
+          </h2>
+        </Reveal>
 
         <div className="mt-12 border border-[#e8e4dc] md:grid md:grid-cols-3">
           {STEPS.map(([num, title, desc], i) => (
-            <div
+            <Reveal
               key={num}
+              from="up"
+              delay={i * 120}
               className={`p-8 ${
                 i < STEPS.length - 1
                   ? "border-b border-[#e8e4dc] md:border-b-0 md:border-r"
@@ -58,7 +64,7 @@ export default function HowItWorks() {
               <p className="mt-3 text-[13px] leading-relaxed text-[#6b7280]">
                 {desc}
               </p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
