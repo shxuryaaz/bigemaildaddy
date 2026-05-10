@@ -27,9 +27,9 @@ export default function Hero() {
             Write my first email
           </button>
         </form>
-        <button type="button" className="btn-ghost">
+        <a href="#examples" className="btn-ghost">
           See example →
-        </button>
+        </a>
       </div>
     </div>
   );

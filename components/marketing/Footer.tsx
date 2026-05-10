@@ -1,4 +1,10 @@
-/** Reserved for future sections; not present in landing v4 HTML. */
 export default function Footer() {
-  return null;
+  return (
+    <footer className="page-footer">
+      <span className="footer-copy">
+        © {new Date().getFullYear()} BigEmailDaddy — Beta
+      </span>
+      <span className="footer-copy">Built for BTech students in India</span>
+    </footer>
+  );
 }

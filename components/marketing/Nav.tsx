@@ -8,9 +8,9 @@ export default function Nav() {
         <span className="logo-sup">Beta</span>
       </div>
       <ul className="nav-links">
-        <li>How it works</li>
-        <li>Examples</li>
-        <li>Pricing</li>
+        <li><a href="#how-it-works">How it works</a></li>
+        <li><a href="#examples">Examples</a></li>
+        <li><a href="#pricing">Pricing</a></li>
       </ul>
       <form action={signInWithGoogleToDashboard}>
         <button type="submit" className="nav-cta">

@@ -7,21 +7,12 @@ import { prisma } from "@/lib/db";
 
 type PatchBody = { email?: string };
 
-async function ensureLinkedTarget(targetId: string, userId: string) {
-  const linked = await prisma.email.findFirst({
-    where: { userId, targetId },
-    select: { id: true },
-  });
-  return linked;
-}
-
 export async function GET(
   _request: Request,
   context: { params: { id: string } },
 ) {
-  let user;
   try {
-    user = await requireUser();
+    await requireUser();
   } catch (e) {
     if (e instanceof UnauthorizedError) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -30,14 +21,6 @@ export async function GET(
   }
 
   const { id: targetId } = context.params;
-  const linked = await ensureLinkedTarget(targetId, user.id);
-  if (!linked) {
-    return NextResponse.json(
-      { error: "You do not have a draft or email for this contact." },
-      { status: 403 },
-    );
-  }
-
   const target = await prisma.target.findUnique({
     where: { id: targetId },
     select: { id: true, email: true, name: true, organization: true },
@@ -53,9 +36,8 @@ export async function PATCH(
   request: Request,
   context: { params: { id: string } },
 ) {
-  let user;
   try {
-    user = await requireUser();
+    await requireUser();
   } catch (e) {
     if (e instanceof UnauthorizedError) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -65,12 +47,12 @@ export async function PATCH(
 
   const { id: targetId } = context.params;
 
-  const linked = await ensureLinkedTarget(targetId, user.id);
-  if (!linked) {
-    return NextResponse.json(
-      { error: "You do not have a draft or email for this contact." },
-      { status: 403 },
-    );
+  const exists = await prisma.target.findUnique({
+    where: { id: targetId },
+    select: { id: true },
+  });
+  if (!exists) {
+    return NextResponse.json({ error: "Target not found" }, { status: 404 });
   }
 
   let body: PatchBody;
