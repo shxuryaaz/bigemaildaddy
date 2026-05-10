@@ -3,29 +3,48 @@ import { signInWithGoogleToDashboard } from "@/app/(marketing)/actions";
 
 export default function Nav() {
   return (
-    <nav className="nav">
-      <div className="logo-mark">
+    <nav className="sticky top-0 z-10 flex items-center justify-between border-b border-[#e8e4dc] bg-[#faf8f4]/95 px-6 py-3.5 backdrop-blur-sm">
+      <a href="/" className="flex items-center gap-2.5">
         <Image
-          className="logo-image"
           src="/logo.png"
-          alt=""
-          width={40}
-          height={40}
+          alt="BigEmailDaddy"
+          width={36}
+          height={36}
           priority
+          className="object-contain"
         />
-        <div className="logo-wordmark">
-          <span className="logo-big">BigEmailDaddy</span>
-          <span className="logo-sup">Beta</span>
-        </div>
-      </div>
-      <ul className="nav-links">
-        <li><a href="#how-it-works">How it works</a></li>
-        <li><a href="#examples">Examples</a></li>
-        <li><a href="#pricing">Pricing</a></li>
+        <span
+          className="text-[17px] font-black tracking-tight text-[#111010]"
+          style={{ fontFamily: "var(--font-serif), serif" }}
+        >
+          BigEmailDaddy
+        </span>
+      </a>
+
+      <ul className="hidden items-center gap-8 list-none md:flex">
+        {[
+          ["#how-it-works", "How it works"],
+          ["#pricing", "Pricing"],
+        ].map(([href, label]) => (
+          <li key={href}>
+            <a
+              href={href}
+              className="text-[11px] uppercase tracking-widest text-[#6b7280] transition-colors hover:text-[#111010]"
+              style={{ fontFamily: "var(--font-mono), monospace" }}
+            >
+              {label}
+            </a>
+          </li>
+        ))}
       </ul>
+
       <form action={signInWithGoogleToDashboard}>
-        <button type="submit" className="nav-cta">
-          Start free →
+        <button
+          type="submit"
+          className="rounded-md bg-[#111010] px-4 py-2 text-[11px] uppercase tracking-wider text-[#faf8f4] transition-opacity hover:opacity-75"
+          style={{ fontFamily: "var(--font-mono), monospace" }}
+        >
+          Get started →
         </button>
       </form>
     </nav>

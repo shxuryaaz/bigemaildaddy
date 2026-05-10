@@ -39,11 +39,11 @@ export const metadata: Metadata = {
     absolute: "BigEmailDaddy — Your cold emails are trash. Ours aren't.",
   },
   description:
-    "Cold emails for BTech students that actually get replies. Taste-matched to professors and recruiters.",
+    "Cold email for university students that actually gets replies. We research the target, find the overlap with your work, and write the email.",
   openGraph: {
     title: "BigEmailDaddy — Your cold emails are trash. Ours aren't.",
     description:
-      "Cold emails for BTech students that actually get replies. Taste-matched to professors and recruiters.",
+      "Cold email for university students that actually gets replies. We research the target, find the overlap with your work, and write the email.",
     type: "website",
     images: [
       {
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "BigEmailDaddy — Your cold emails are trash. Ours aren't.",
     description:
-      "Cold emails for BTech students that actually get replies. Taste-matched to professors and recruiters.",
+      "Cold email for university students that actually gets replies. We research the target, find the overlap with your work, and write the email.",
     images: ["/logo.png"],
   },
 };
