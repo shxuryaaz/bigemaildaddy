@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { signInWithGoogleToDashboard } from "@/app/(marketing)/actions";
+import Link from "next/link";
 
 export default function Nav() {
   return (
@@ -21,32 +21,13 @@ export default function Nav() {
         </span>
       </a>
 
-      <ul className="hidden items-center gap-8 list-none md:flex">
-        {[
-          ["#how-it-works", "How it works"],
-          ["#pricing", "Pricing"],
-        ].map(([href, label]) => (
-          <li key={href}>
-            <a
-              href={href}
-              className="text-[11px] uppercase tracking-widest text-[#6b7280] transition-colors hover:text-[#111010]"
-              style={{ fontFamily: "var(--font-mono), monospace" }}
-            >
-              {label}
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      <form action={signInWithGoogleToDashboard}>
-        <button
-          type="submit"
-          className="rounded-md bg-[#111010] px-4 py-2 text-[11px] uppercase tracking-wider text-[#faf8f4] transition-opacity hover:opacity-75"
-          style={{ fontFamily: "var(--font-mono), monospace" }}
-        >
-          Get started →
-        </button>
-      </form>
+      <Link
+        href="/signin"
+        className="rounded-md bg-[#111010] px-4 py-2 text-[11px] uppercase tracking-wider text-[#faf8f4] transition-opacity hover:opacity-75"
+        style={{ fontFamily: "var(--font-mono), monospace" }}
+      >
+        Get started →
+      </Link>
     </nav>
   );
 }

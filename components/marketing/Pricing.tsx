@@ -1,4 +1,5 @@
-import { signInWithGoogleToDashboard } from "@/app/(marketing)/actions";
+import Link from "next/link";
+import { Reveal } from "@/components/marketing/Reveal";
 
 const FEATURES = [
   "Resume + GitHub identity extraction — no hallucinated skills",
@@ -10,15 +11,18 @@ const FEATURES = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="border-t border-[#e8e4dc] bg-[#f5f2ec] px-6 py-20">
+    <section id="pricing" className="border-t border-[#e8e4dc] bg-[#faf8f4] px-6 py-20">
       <div className="mx-auto max-w-sm">
-        <p
-          className="mb-3 text-center text-[11px] uppercase tracking-[0.22em] text-[#6b7280]"
-          style={{ fontFamily: "var(--font-mono), monospace" }}
-        >
-          Pricing
-        </p>
+        <Reveal from="up">
+          <p
+            className="mb-3 text-center text-[11px] uppercase tracking-[0.22em] text-[#6b7280]"
+            style={{ fontFamily: "var(--font-mono), monospace" }}
+          >
+            Pricing
+          </p>
+        </Reveal>
 
+        <Reveal from="up" delay={100}>
         <div className="rounded-xl border border-[#e8e4dc] bg-white p-8 shadow-sm">
           <div className="mb-8 border-b border-[#e8e4dc] pb-8">
             <div className="flex items-baseline gap-1.5">
@@ -49,19 +53,20 @@ export default function Pricing() {
             ))}
           </ul>
 
-          <form action={signInWithGoogleToDashboard}>
-            <button
-              type="submit"
-              className="w-full rounded-md bg-[#111010] py-3.5 text-[14px] font-medium text-white transition-opacity hover:opacity-75"
-            >
-              Get started →
-            </button>
-          </form>
+          <Link
+            href="/signin"
+            className="block w-full rounded-md bg-[#111010] py-3.5 text-center text-[14px] font-medium text-white transition-opacity hover:opacity-75"
+          >
+            Get started →
+          </Link>
         </div>
+        </Reveal>
 
-        <p className="mt-6 text-center text-[11px] text-[#9ca3af]">
-          One email that gets a reply is worth the month.
-        </p>
+        <Reveal from="fade" delay={250}>
+          <p className="mt-6 text-center text-[11px] text-[#9ca3af]">
+            One email that gets a reply is worth the month.
+          </p>
+        </Reveal>
       </div>
     </section>
   );
