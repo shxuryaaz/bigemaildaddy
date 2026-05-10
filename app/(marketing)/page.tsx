@@ -5,7 +5,6 @@ import HowItWorks from "@/components/marketing/HowItWorks";
 import Nav from "@/components/marketing/Nav";
 import Pricing from "@/components/marketing/Pricing";
 import SignalPanel from "@/components/marketing/SignalPanel";
-import StatsBar from "@/components/marketing/StatsBar";
 
 export default function MarketingHome() {
   return (
@@ -18,7 +17,6 @@ export default function MarketingHome() {
           <SignalPanel />
         </div>
       </div>
-      <StatsBar />
       <HowItWorks />
       <Pricing />
       <Footer />

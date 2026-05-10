@@ -68,9 +68,6 @@ body {
   --color-signal-text: #c8c4ba;
   --color-signal-strong: #f2efe8;
   --color-nav-link: #5a5850;
-  --color-stat-label: #8a8478;
-  --color-quote-mark: #c8c4ba;
-  --color-quote-text: #5a5850;
   --border-radius-lg: 12px;
 
   min-height: 100dvh;
@@ -421,75 +418,6 @@ body {
 .marketing-root .sig-text strong {
   color: var(--color-signal-strong);
   font-weight: 500;
-}
-
-/* ── Stats bar ── */
-.marketing-root .bottom-bar {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  border-bottom: 1.5px solid var(--color-ink);
-}
-
-.marketing-root .stat-cell {
-  padding: 20px 28px;
-  border-right: 1px solid var(--color-border);
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.marketing-root .stat-cell:last-child {
-  border-right: none;
-}
-
-.marketing-root .s-num {
-  font-family: var(--font-serif), serif;
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--color-ink);
-  letter-spacing: -1px;
-  line-height: 1;
-}
-
-.marketing-root .s-label {
-  font-family: var(--font-mono), monospace;
-  font-size: 9px;
-  color: var(--color-stat-label);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  line-height: 1.4;
-}
-
-.marketing-root .quote-cell {
-  padding: 20px 28px;
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-}
-
-.marketing-root .q-mark {
-  font-family: var(--font-serif), serif;
-  font-size: 32px;
-  color: var(--color-quote-mark);
-  line-height: 1;
-  margin-top: -4px;
-  flex-shrink: 0;
-}
-
-.marketing-root .q-text {
-  font-size: 11px;
-  color: var(--color-quote-text);
-  line-height: 1.55;
-  font-style: italic;
-}
-
-.marketing-root .q-author {
-  font-family: var(--font-mono), monospace;
-  font-size: 9px;
-  color: var(--color-stat-label);
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  margin-top: 5px;
 }
 
 /* ── How it works ── */
