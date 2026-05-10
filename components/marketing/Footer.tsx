@@ -17,6 +17,13 @@ export default function Footer() {
         >
           Privacy Policy
         </Link>
+        <Link
+          href="/terms"
+          className="text-[10px] uppercase tracking-wider text-[#9ca3af] transition-colors hover:text-[#111010]"
+          style={{ fontFamily: "var(--font-mono), monospace" }}
+        >
+          Terms of Service
+        </Link>
       </div>
     </footer>
   );
