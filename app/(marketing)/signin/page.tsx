@@ -8,15 +8,15 @@ export default function SignInPage() {
       {/* Left — dark mascot panel */}
       <div className="hidden w-[42%] flex-col items-center justify-center bg-[#111010] md:flex">
         <Image
-          src="/logo.png"
+          src="/mascot.png"
           alt="BigEmailDaddy"
-          width={120}
-          height={120}
-          className="object-contain"
+          width={280}
+          height={280}
+          className="object-contain drop-shadow-2xl"
           priority
         />
         <p
-          className="mt-5 text-[20px] font-black tracking-tight text-white"
+          className="mt-6 text-[22px] font-black tracking-tight text-white"
           style={{ fontFamily: "var(--font-serif), serif" }}
         >
           BigEmailDaddy
