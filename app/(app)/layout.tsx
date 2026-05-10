@@ -103,8 +103,15 @@ export default async function AppChromeLayout({
         <div className="border-b-[1.5px] border-[#1c1b17] px-5 py-5">
           <Link
             href="/dashboard"
-            className="font-[family-name:var(--font-serif)] text-base font-black tracking-tight text-[#1c1b17]"
+            className="flex items-center gap-2 font-[family-name:var(--font-serif)] text-base font-black tracking-tight text-[#1c1b17]"
           >
+            <Image
+              src="/logo.png"
+              alt=""
+              width={32}
+              height={32}
+              className="shrink-0 object-contain"
+            />
             BigEmailDaddy
           </Link>
         </div>

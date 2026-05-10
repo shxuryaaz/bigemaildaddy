@@ -45,12 +45,21 @@ export const metadata: Metadata = {
     description:
       "Cold emails for BTech students that actually get replies. Taste-matched to professors and recruiters.",
     type: "website",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1024,
+        height: 783,
+        alt: "BigEmailDaddy",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "BigEmailDaddy — Your cold emails are trash. Ours aren't.",
     description:
       "Cold emails for BTech students that actually get replies. Taste-matched to professors and recruiters.",
+    images: ["/logo.png"],
   },
 };
 

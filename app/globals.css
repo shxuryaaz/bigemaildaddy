@@ -121,8 +121,22 @@ body {
 
 .marketing-root .logo-mark {
   display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.marketing-root .logo-image {
+  flex-shrink: 0;
+  display: block;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.marketing-root .logo-wordmark {
+  display: inline-flex;
   align-items: baseline;
-  gap: 0;
+  gap: 7px;
 }
 
 .marketing-root .logo-big {
@@ -131,6 +145,7 @@ body {
   font-weight: 900;
   color: var(--color-ink);
   letter-spacing: -0.5px;
+  line-height: 1.05;
 }
 
 .marketing-root .logo-sup {
@@ -138,10 +153,11 @@ body {
   font-size: 9px;
   color: var(--color-muted);
   font-weight: 400;
-  margin-left: 6px;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  align-self: center;
+  line-height: 1;
+  position: relative;
+  top: -0.2em;
 }
 
 .marketing-root .nav-links {

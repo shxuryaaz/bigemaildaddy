@@ -5,9 +5,18 @@ export default function Nav() {
   return (
     <nav className="nav">
       <div className="logo-mark">
-        <Image src="/logo.png" alt="BigEmailDaddy" width={40} height={40} style={{ objectFit: "contain" }} />
-        <span className="logo-big" style={{ marginLeft: 10 }}>BigEmailDaddy</span>
-        <span className="logo-sup">Beta</span>
+        <Image
+          className="logo-image"
+          src="/logo.png"
+          alt=""
+          width={40}
+          height={40}
+          priority
+        />
+        <div className="logo-wordmark">
+          <span className="logo-big">BigEmailDaddy</span>
+          <span className="logo-sup">Beta</span>
+        </div>
       </div>
       <ul className="nav-links">
         <li><a href="#how-it-works">How it works</a></li>
