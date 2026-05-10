@@ -1,10 +1,12 @@
+import Image from "next/image";
 import { signInWithGoogleToDashboard } from "@/app/(marketing)/actions";
 
 export default function Nav() {
   return (
     <nav className="nav">
       <div className="logo-mark">
-        <span className="logo-big">BigEmailDaddy</span>
+        <Image src="/logo.png" alt="BigEmailDaddy" width={40} height={40} style={{ objectFit: "contain" }} />
+        <span className="logo-big" style={{ marginLeft: 10 }}>BigEmailDaddy</span>
         <span className="logo-sup">Beta</span>
       </div>
       <ul className="nav-links">
