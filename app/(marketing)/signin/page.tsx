@@ -40,41 +40,68 @@ export default function SignInPage() {
         </Link>
 
         <h1
-          className="text-[32px] font-black leading-[1.1] tracking-tight text-[#111010] md:text-[40px]"
-          style={{ fontFamily: "var(--font-serif), serif" }}
+          className="text-[28px] font-bold leading-[1.2] tracking-tight text-[#111010] md:text-[34px]"
+          style={{ fontFamily: "var(--font-sans), system-ui, sans-serif" }}
         >
-          One permission.
-          <br />
-          <span className="italic">Here&apos;s what it does.</span>
+          Before you hit Continue —<br />here&apos;s exactly what we can and
+          can&apos;t do with your Google account.
         </h1>
 
+        <p className="mt-4 text-[14px] leading-relaxed text-[#6b7280]"
+          style={{ fontFamily: "var(--font-sans), system-ui, sans-serif" }}>
+          We ask for one Gmail permission. Nothing more. Here&apos;s what it
+          means in plain English.
+        </p>
+
+        {/* Permission card */}
         <div className="mt-8 rounded-xl border border-[#e8e4dc] bg-white p-6">
-          <p className="text-[13px] font-semibold uppercase tracking-widest text-[#9ca3af]"
-            style={{ fontFamily: "var(--font-mono), monospace" }}>
-            What we ask for
+          <p
+            className="text-[11px] font-medium uppercase tracking-widest text-[#9ca3af]"
+            style={{ fontFamily: "var(--font-mono), monospace" }}
+          >
+            The one thing we ask for
           </p>
           <p
-            className="mt-3 text-[18px] font-bold text-[#111010]"
-            style={{ fontFamily: "var(--font-serif), serif" }}
+            className="mt-3 text-[17px] font-semibold text-[#111010]"
+            style={{ fontFamily: "var(--font-sans), system-ui, sans-serif" }}
           >
-            Send emails from your Gmail
+            Send emails on your behalf
           </p>
-          <p className="mt-2 text-[13px] leading-relaxed text-[#6b7280]">
-            When you click Send, we push that one email through your Gmail. It
-            lands in your Sent folder, from your address, like you sent it
-            yourself. That&apos;s the entire scope.
+          <p
+            className="mt-2 text-[13px] leading-relaxed text-[#6b7280]"
+            style={{ fontFamily: "var(--font-sans), system-ui, sans-serif" }}
+          >
+            When you write an email inside BigEmailDaddy and click Send, we
+            deliver it through your Gmail. It shows up in your Sent folder, from
+            your address — exactly like you sent it yourself.
           </p>
         </div>
 
-        <p className="mt-6 text-[13px] leading-relaxed text-[#9ca3af]">
-          We don&apos;t read your inbox. We don&apos;t touch your contacts.
-          Nothing goes out without you clicking Send.
-        </p>
+        {/* What we won't do */}
+        <div className="mt-6 space-y-3">
+          {[
+            "We cannot read, search, or access any emails in your inbox",
+            "We cannot see your contacts, calendar, or any other Google data",
+            "We never send anything without you explicitly clicking Send",
+            "You can revoke access from your Google account settings at any time",
+          ].map((line) => (
+            <div key={line} className="flex items-start gap-3">
+              <span className="mt-0.5 text-[15px] text-green-500">✓</span>
+              <p
+                className="text-[13px] leading-relaxed text-[#374151]"
+                style={{ fontFamily: "var(--font-sans), system-ui, sans-serif" }}
+              >
+                {line}
+              </p>
+            </div>
+          ))}
+        </div>
 
         <form action={signInWithGoogleToDashboard} className="mt-10">
           <button
             type="submit"
             className="w-full rounded-md bg-[#111010] py-4 text-[14px] font-medium text-[#faf8f4] transition-opacity hover:opacity-75 md:w-auto md:px-10"
+            style={{ fontFamily: "var(--font-sans), system-ui, sans-serif" }}
           >
             Continue with Google →
           </button>
