@@ -84,7 +84,7 @@ export async function searchProfessorsWeb(
 
 The query can be:
 - A person's name: "Andrew Ng" → find that specific individual on Google Scholar + faculty page
-- A role + institution: "head of CSE NIT Noida" → find the actual person holding that role, then also find up to 4 other faculty in that department
+- A role + institution: "ML faculty Stanford" → find relevant people in that group, then also find up to 4 other faculty in that department
 - A topic + institution: "NLP professor IIT Delhi" → find multiple professors in that domain at that institution
 - A company/org name without academic context: "Co-Founder Agilow" → search for all founders and key people at that organization
 

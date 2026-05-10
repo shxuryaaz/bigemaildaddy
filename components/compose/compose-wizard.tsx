@@ -873,7 +873,7 @@ export default function ComposeWizard() {
                   placeholder={
                     typeParam === "RECRUITER"
                       ? "e.g. CEO of Agilow, or head of eng at Razorpay"
-                      : "e.g. Andrew Ng, or head of CSE dept NIT Noida"
+                      : "e.g. Andrew Ng, or ML faculty at Stanford CS"
                   }
                   className="w-full border-[1.5px] border-[#1c1b17] bg-white px-3 py-2.5 text-[15px] outline-none placeholder:text-[#c8c4ba]"
                 />
