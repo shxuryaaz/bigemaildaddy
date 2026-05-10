@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { Reveal } from "@/components/marketing/Reveal";
+import { GetStartedButton } from "@/components/marketing/GetStartedButton";
 
 const FEATURES = [
   "Resume + GitHub identity extraction — no hallucinated skills",
@@ -53,12 +53,7 @@ export default function Pricing() {
             ))}
           </ul>
 
-          <Link
-            href="/signin"
-            className="block w-full rounded-md bg-[#111010] py-3.5 text-center text-[14px] font-medium text-white transition-opacity hover:opacity-75"
-          >
-            Get started →
-          </Link>
+          <GetStartedButton className="block w-full rounded-md bg-[#111010] py-3.5 text-center text-[14px] font-medium text-white transition-opacity hover:opacity-75" />
         </div>
         </Reveal>
 

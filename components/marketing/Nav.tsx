@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { GetStartedButton } from "@/components/marketing/GetStartedButton";
 
 export default function Nav() {
   return (
@@ -21,13 +21,10 @@ export default function Nav() {
         </span>
       </a>
 
-      <Link
-        href="/signin"
+      <GetStartedButton
         className="rounded-md bg-[#111010] px-4 py-2 text-[11px] uppercase tracking-wider text-[#faf8f4] transition-opacity hover:opacity-75"
         style={{ fontFamily: "var(--font-mono), monospace" }}
-      >
-        Get started →
-      </Link>
+      />
     </nav>
   );
 }

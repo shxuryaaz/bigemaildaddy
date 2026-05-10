@@ -36,12 +36,12 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000",
   ),
   title: {
-    absolute: "BigEmailDaddy — Your cold emails are trash. Ours aren't.",
+    absolute: "BigEmailDaddy",
   },
   description:
     "Cold email for university students that actually gets replies. We research the target, find the overlap with your work, and write the email.",
   openGraph: {
-    title: "BigEmailDaddy — Your cold emails are trash. Ours aren't.",
+    title: "BigEmailDaddy",
     description:
       "Cold email for university students that actually gets replies. We research the target, find the overlap with your work, and write the email.",
     type: "website",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "BigEmailDaddy — Your cold emails are trash. Ours aren't.",
+    title: "BigEmailDaddy",
     description:
       "Cold email for university students that actually gets replies. We research the target, find the overlap with your work, and write the email.",
     images: ["/logo.png"],

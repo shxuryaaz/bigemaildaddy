@@ -40,14 +40,14 @@ const SECTIONS = [
   {
     title: "Data retention and deletion",
     body: [
-      "You can delete your account and all associated data at any time by emailing shaurya@agilow.ai with the subject line 'Delete my account'.",
+      "You can delete your account and all associated data at any time by emailing bigemaildad@gmail.com with the subject line 'Delete my account'.",
       "We will delete your profile, identity model, email records, and OAuth tokens within 7 days of receiving your request.",
     ],
   },
   {
     title: "Contact",
     body: [
-      "If you have any questions about this policy or how we handle your data, email us at shaurya@agilow.ai.",
+      "If you have any questions about this policy or how we handle your data, email us at bigemaildad@gmail.com.",
     ],
   },
 ];

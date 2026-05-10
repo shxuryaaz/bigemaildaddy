@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { GetStartedButton } from "@/components/marketing/GetStartedButton";
 
 export function HeroCTAs() {
   return (
@@ -8,12 +8,7 @@ export function HeroCTAs() {
       className="hero-animate mt-12 flex flex-wrap items-center justify-center gap-4"
       style={{ animationDelay: "380ms" }}
     >
-      <Link
-        href="/signin"
-        className="rounded-md bg-[#111010] px-7 py-3.5 text-[14px] font-medium text-[#faf8f4] transition-opacity hover:opacity-75"
-      >
-        Get started →
-      </Link>
+      <GetStartedButton className="rounded-md bg-[#111010] px-7 py-3.5 text-[14px] font-medium text-[#faf8f4] transition-opacity hover:opacity-75" />
       <button
         type="button"
         onClick={() => {

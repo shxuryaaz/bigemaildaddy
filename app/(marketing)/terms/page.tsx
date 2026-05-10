@@ -24,7 +24,7 @@ const SECTIONS = [
     body: [
       "You sign in with your Google account. You are responsible for keeping your account secure.",
       "We reserve the right to suspend or terminate accounts that violate these terms, are used for spam, or are inactive for more than 12 months.",
-      "You can delete your account at any time by emailing shaurya@agilow.ai.",
+      "You can delete your account at any time by emailing bigemaildad@gmail.com.",
     ],
   },
   {
@@ -32,7 +32,7 @@ const SECTIONS = [
     body: [
       "BigEmailDaddy is a subscription service at $30 USD per month. You can cancel at any time — no questions asked.",
       "Cancellation takes effect at the end of your current billing period. We do not offer partial refunds for unused time.",
-      "If you experience a technical issue that prevents you from using the service, contact us at shaurya@agilow.ai and we will assess refunds on a case-by-case basis.",
+      "If you experience a technical issue that prevents you from using the service, contact us at bigemaildad@gmail.com and we will assess refunds on a case-by-case basis.",
     ],
   },
   {
@@ -60,7 +60,7 @@ const SECTIONS = [
   {
     title: "Contact",
     body: [
-      "Questions about these terms? Email shaurya@agilow.ai.",
+      "Questions about these terms? Email bigemaildad@gmail.com.",
     ],
   },
 ];

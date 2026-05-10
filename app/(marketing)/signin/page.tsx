@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { signInWithGoogleToDashboard } from "@/app/(marketing)/actions";
+import { SignInWithGoogleForm } from "@/components/marketing/SignInWithGoogleForm";
 
 export default function SignInPage() {
   return (
-    <main className="flex min-h-screen">
+    <main className="signin-transition flex min-h-screen">
       {/* Left — dark mascot panel */}
       <div className="hidden w-[42%] flex-col items-center justify-center bg-[#111010] md:flex">
         <Image
@@ -97,15 +98,7 @@ export default function SignInPage() {
           ))}
         </div>
 
-        <form action={signInWithGoogleToDashboard} className="mt-10">
-          <button
-            type="submit"
-            className="w-full rounded-md bg-[#111010] py-4 text-[14px] font-medium text-[#faf8f4] transition-opacity hover:opacity-75 md:w-auto md:px-10"
-            style={{ fontFamily: "var(--font-sans), system-ui, sans-serif" }}
-          >
-            Continue with Google →
-          </button>
-        </form>
+        <SignInWithGoogleForm action={signInWithGoogleToDashboard} />
       </div>
     </main>
   );
