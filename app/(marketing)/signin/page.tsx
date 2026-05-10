@@ -8,7 +8,7 @@ export default function SignInPage() {
       {/* Left — dark mascot panel */}
       <div className="hidden w-[42%] flex-col items-center justify-center bg-[#111010] md:flex">
         <Image
-          src="/logo.png"
+          src="/logo-nobg.png"
           alt="BigEmailDaddy"
           width={120}
           height={120}

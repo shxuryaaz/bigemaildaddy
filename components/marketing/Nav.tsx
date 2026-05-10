@@ -6,7 +6,7 @@ export default function Nav() {
     <nav className="sticky top-0 z-10 flex items-center justify-between border-b border-[#e8e4dc] bg-[#faf8f4]/95 px-6 py-3.5 backdrop-blur-sm">
       <a href="/" className="flex items-center gap-2.5">
         <Image
-          src="/logo.png"
+          src="/logo-nobg.png"
           alt="BigEmailDaddy"
           width={36}
           height={36}
